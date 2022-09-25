@@ -25,6 +25,8 @@ dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation("com.google.guava:guava:30.1.1-jre")
+
+    implementation("de.articdive:jnoise-pipeline:3.0.2")
 }
 
 tasks.named<Test>("test") {
