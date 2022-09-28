@@ -1,16 +1,18 @@
 package procedural_generation.noise;
 
-public class NoiseMap implements Node {
-    private final int seed;
-    private final int jNoise;
+import de.articdive.jnoise.JNoise;
 
-    public NoiseMap(int seed) {
-        this.seed = seed;
-        this.jNoise =
+public class NoiseMap implements Node {
+    private final JNoise jNoise;
+
+    public NoiseMap(long seed) {
+        this.jNoise = JNoise.newBuilder().perlin()
+                .setSeed(seed)
+                .build();
     }
 
     @Override
     public double getValue(double x, double y) {
-        return 0;
+        return jNoise.getNoise(x, y);
     }
 }
