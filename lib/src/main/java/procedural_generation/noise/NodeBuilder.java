@@ -1,4 +1,5 @@
 package procedural_generation.noise;
 
-public class NodeBuilder {
+public interface NodeBuilder {
+    Node build(long seed);
 }
