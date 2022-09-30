@@ -4,11 +4,61 @@
 package procedural_generation;
 
 import org.junit.jupiter.api.Test;
+import procedural_generation.noise.ComplexNoise;
+import procedural_generation.noise.ComplexNoiseBuilder;
+import procedural_generation.noise.NodeBuilder;
+import procedural_generation.noise.NoiseMapBuilder;
+import procedural_generation.noise.nodes.AddNodeBuilder;
+import procedural_generation.noise.nodes.ChangeSeedNodeBuilder;
+import procedural_generation.noise.nodes.Operation;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
-    @Test void someLibraryMethodReturnsTrue() {
+    @Test
+    void someLibraryMethodReturnsTrue() {
         Library classUnderTest = new Library();
         assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
+    }
+
+    @Test
+    void createNode() {
+        ComplexNoiseBuilder complexNoiseBuilder = new ComplexNoiseBuilder(
+                new AddNodeBuilder(
+                        new ChangeSeedNodeBuilder(
+                                Operation.ADD,
+                                1,
+                                new NoiseMapBuilder()
+                        ),
+                        new NoiseMapBuilder()
+                )
+        );
+        ComplexNoise complexNoise = complexNoiseBuilder.build(10);
+
+        // generate a 2d array of noise
+        double[][] noise = new double[1000][1000];
+        for (int x = 0; x < noise.length; x++) {
+            for (int y = 0; y < noise[x].length; y++) {
+                noise[x][y] = complexNoise.getValue(x, y);
+            }
+        }
+
+        // generate an image of the noise (gray scale)
+        BufferedImage noiseImage = new BufferedImage(noise.length, noise[0].length, BufferedImage.TYPE_INT_RGB);
+        for (int x = 0; x < noise.length; x++) {
+            for (int y = 0; y < noise[x].length; y++) {
+                int color = (int) ((noise[x][y]+1) / 2 * 255);
+                noiseImage.setRGB(x, y, (new Color(color, color, color)).getRGB());
+            }
+        }
+        // save the image
+        try {
+            javax.imageio.ImageIO.write(noiseImage, "png", new java.io.File("noise.png"));
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
     }
 }
