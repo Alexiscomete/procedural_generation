@@ -16,11 +16,6 @@ public class ChangeSeedNodeBuilder implements NodeBuilder {
 
     @Override
     public Node build(long seed) {
-        return switch (operation) {
-            case ADD -> nodeBuilder.build(seed + value);
-            case SUBTRACT -> nodeBuilder.build(seed - value);
-            case MULTIPLY -> nodeBuilder.build(seed * value);
-            case DIVIDE -> nodeBuilder.build(seed / value);
-        };
+        return nodeBuilder.build(operation.apply(seed, value));
     }
 }

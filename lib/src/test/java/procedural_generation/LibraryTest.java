@@ -51,9 +51,10 @@ class LibraryTest {
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
                 int color = (int) ((noise[x][y]+1) / 2 * 255);
-                noiseImage.setRGB(x, y, (new Color(color, color, color)).getRGB());
+                noiseImage.setRGB(x, y, (new Color(color, color, 255 - color)).getRGB());
             }
         }
+
         // save the image
         try {
             javax.imageio.ImageIO.write(noiseImage, "png", new java.io.File("noise.png"));
