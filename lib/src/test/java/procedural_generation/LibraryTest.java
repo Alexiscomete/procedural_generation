@@ -29,41 +29,45 @@ class LibraryTest {
     @Test
     void createNode() {
         ComplexNoiseBuilder complexNoiseBuilder = new ComplexNoiseBuilder(
-                new AddNodeBuilder(
-                        new ChangeSeedNodeBuilder(
-                                Operation.ADD,
-                                1,
-                                new NoiseMapBuilder(1)
-                        ),
-                        new NoiseMapBuilder(1),
-                        new ChangeLocationNodeBuilder(
-                                new ChangeSeedNodeBuilder(
-                                        Operation.ADD,
-                                        1,
-                                        new NoiseMapBuilder(5)
-                                ),
-                                Operation.DIVIDE,
-                                Operation.DIVIDE,
-                                10,
-                                10
-                        ),
-                        new ChangeLocationNodeBuilder(
+                new ValueOperationNodeBuilder(
+                        new AddNodeBuilder(
                                 new ChangeSeedNodeBuilder(
                                         Operation.ADD,
                                         1,
                                         new NoiseMapBuilder(1)
                                 ),
-                                Operation.DIVIDE,
-                                Operation.DIVIDE,
-                                100,
-                                100
-                        )
+                                new NoiseMapBuilder(1),
+                                new ChangeLocationNodeBuilder(
+                                        new ChangeSeedNodeBuilder(
+                                                Operation.ADD,
+                                                1,
+                                                new NoiseMapBuilder(5)
+                                        ),
+                                        Operation.DIVIDE,
+                                        Operation.DIVIDE,
+                                        10,
+                                        10
+                                ),
+                                new ChangeLocationNodeBuilder(
+                                        new ChangeSeedNodeBuilder(
+                                                Operation.ADD,
+                                                1,
+                                                new NoiseMapBuilder(1)
+                                        ),
+                                        Operation.DIVIDE,
+                                        Operation.DIVIDE,
+                                        100,
+                                        100
+                                )
+                        ),
+                        ValueOperation.POWER_START_NEGATIVE,
+                        3
                 )
         );
-        ComplexNoise complexNoise = complexNoiseBuilder.build(10);
+        ComplexNoise complexNoise = complexNoiseBuilder.build(110);
 
         // generate a 2d array of noise
-        double[][] noise = new double[1000][1000];
+        double[][] noise = new double[10000][2000];
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
                 noise[x][y] = complexNoise.getValue(x, y);
