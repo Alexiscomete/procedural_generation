@@ -5,10 +5,7 @@ package procedural_generation;
 
 import org.junit.jupiter.api.Test;
 import procedural_generation.noise.*;
-import procedural_generation.noise.nodes.AddNodeBuilder;
-import procedural_generation.noise.nodes.ChangeLocationNodeBuilder;
-import procedural_generation.noise.nodes.ChangeSeedNodeBuilder;
-import procedural_generation.noise.nodes.Operation;
+import procedural_generation.noise.nodes.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,10 +15,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class LibraryTest {
     @Test
     void someLibraryMethodReturnsTrue() {
-        NoiseMap n = new NoiseMap(0, 5);
+        AddNode add = new AddNode(
+                new NoiseMap(0, 5),
+                new NoiseMap(1, 5)
+        );
         // verify if > 0 and < 1
         for (int i = 0; i < 10000; i++) {
-            double d = n.getValue(i, 0);
+            double d = add.getValue(i, 0);
             assertTrue(d >= 0 && d <= 1);
         }
     }
@@ -74,7 +74,6 @@ class LibraryTest {
         BufferedImage noiseImage = new BufferedImage(noise.length, noise[0].length, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
-                System.out.println(noise[x][y]);
                 int color = (int) (noise[x][y] * 255);
                 noiseImage.setRGB(x, y, (new Color(color, color, 255 - color)).getRGB());
             }

@@ -16,13 +16,15 @@ public class AddNode implements Node {
         for (Node node : nodes) {
             value += node.getValue(x, y) * node.getWeight();
         }
-        double weight = getWeight();
-        if (weight != 0) {
-            value /= weight;
-        } else {
-            value = 0;
+        // normalize the value to be between 0 and 1 : add the weights of all the nodes and divide by it
+        double weight = 0;
+        for (Node node : nodes) {
+            weight += node.getWeight();
         }
-        return value;
+        if (weight == 0) {
+            return 0;
+        }
+        return value / weight;
     }
 
     @Override
