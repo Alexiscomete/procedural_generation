@@ -79,7 +79,15 @@ class LibraryTest {
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
                 int color = (int) (noise[x][y] * 255);
-                noiseImage.setRGB(x, y, (new Color(color, color, 255 - color)).getRGB());
+                int blue = 255-color;
+                int green = color;
+                int red = 0;
+                if (color > 127) {
+                    blue = 0;
+                } else {
+                    green = 0;
+                }
+                noiseImage.setRGB(x, y, (new Color(red, green, blue)).getRGB());
             }
         }
 
