@@ -20,7 +20,7 @@ public class NoiseMap implements Node {
 
     @Override
     public double getValue(double x, double y) {
-        return jNoise.getNoise(x, y);
+        return ((jNoise.getNoise(x, y) + 1) / 2);
     }
 
     @Override
