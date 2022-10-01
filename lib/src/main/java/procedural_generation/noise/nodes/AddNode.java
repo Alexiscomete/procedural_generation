@@ -14,9 +14,25 @@ public class AddNode implements Node {
     public double getValue(double x, double y) {
         double value = 0;
         for (Node node : nodes) {
-            value += node.getValue(x, y);
+            value += node.getValue(x, y) * node.getWeight();
         }
         // divide by number of nodes to get average
-        return value / nodes.length;
+        double weight = getWeight();
+        if (weight != 0) {
+            value /= weight;
+        } else {
+            value = 0;
+        }
+        return value;
+    }
+
+    @Override
+    public double getWeight() {
+        // weight is the average of the weights of the nodes
+        double weight = 0;
+        for (Node node : nodes) {
+            weight += node.getWeight();
+        }
+        return weight / nodes.length;
     }
 }

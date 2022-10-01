@@ -21,4 +21,9 @@ public class ChangeLocationNode implements Node {
         double newY = operationY.apply(y, valueY);
         return node.getValue(newX, newY);
     }
+
+    @Override
+    public double getWeight() {
+        return node.getWeight();
+    }
 }

@@ -9,6 +9,7 @@ import procedural_generation.noise.ComplexNoiseBuilder;
 import procedural_generation.noise.NodeBuilder;
 import procedural_generation.noise.NoiseMapBuilder;
 import procedural_generation.noise.nodes.AddNodeBuilder;
+import procedural_generation.noise.nodes.ChangeLocationNodeBuilder;
 import procedural_generation.noise.nodes.ChangeSeedNodeBuilder;
 import procedural_generation.noise.nodes.Operation;
 
@@ -31,9 +32,31 @@ class LibraryTest {
                         new ChangeSeedNodeBuilder(
                                 Operation.ADD,
                                 1,
-                                new NoiseMapBuilder()
+                                new NoiseMapBuilder(1)
                         ),
-                        new NoiseMapBuilder()
+                        new NoiseMapBuilder(1),
+                        new ChangeLocationNodeBuilder(
+                                new ChangeSeedNodeBuilder(
+                                        Operation.ADD,
+                                        1,
+                                        new NoiseMapBuilder(5)
+                                ),
+                                Operation.DIVIDE,
+                                Operation.DIVIDE,
+                                10,
+                                10
+                        ),
+                        new ChangeLocationNodeBuilder(
+                                new ChangeSeedNodeBuilder(
+                                        Operation.ADD,
+                                        1,
+                                        new NoiseMapBuilder(1)
+                                ),
+                                Operation.DIVIDE,
+                                Operation.DIVIDE,
+                                100,
+                                100
+                        )
                 )
         );
         ComplexNoise complexNoise = complexNoiseBuilder.build(10);
