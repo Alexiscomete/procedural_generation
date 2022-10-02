@@ -13,58 +13,74 @@ import java.awt.image.BufferedImage;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
+
+    ComplexNoiseBuilder complexNoiseBuilder = new ComplexNoiseBuilder(
+            new ValueOperationNodeBuilder(
+                    new AddNodeBuilder(
+                            new ChangeSeedNodeBuilder(
+                                    Operation.ADD,
+                                    1,
+                                    new NoiseMapBuilder(1)
+                            ),
+                            new NoiseMapBuilder(1),
+                            new ChangeLocationNodeBuilder(
+                                    new ChangeSeedNodeBuilder(
+                                            Operation.ADD,
+                                            1,
+                                            new NoiseMapBuilder(5)
+                                    ),
+                                    Operation.DIVIDE,
+                                    Operation.DIVIDE,
+                                    10,
+                                    10
+                            ),
+                            new ChangeLocationNodeBuilder(
+                                    new ChangeSeedNodeBuilder(
+                                            Operation.ADD,
+                                            1,
+                                            new NoiseMapBuilder(1)
+                                    ),
+                                    Operation.DIVIDE,
+                                    Operation.DIVIDE,
+                                    100,
+                                    100
+                            )
+                    ),
+                    ValueOperation.POWER_START_NEGATIVE,
+                    3
+            )
+    );
+    ComplexNoise complexNoise = complexNoiseBuilder.build(110);
+
     @Test
     void someLibraryMethodReturnsTrue() {
-        AddNode add = new AddNode(
-                new NoiseMap(0, 5),
-                new NoiseMap(1, 5)
-        );
         // verify if > 0 and < 1
         for (int i = 0; i < 10000; i++) {
-            double d = add.getValue(i, 0);
+            double d = complexNoise.getValue(i, 0);
             assertTrue(d >= 0 && d <= 1);
         }
     }
 
     @Test
+    void verifHight() {
+        assertTrue(existMax(0.7));
+        assertTrue(existMax(0.8));
+        assertTrue(existMax(0.9));
+    }
+
+    boolean existMax(double value) {
+        for (int i = 0; i < 1000; i++) {
+            for (int j = 0; j < 1000; j++) {
+                if (complexNoise.getValue(i, j) >= value) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Test
     void createNode() {
-        ComplexNoiseBuilder complexNoiseBuilder = new ComplexNoiseBuilder(
-                new ValueOperationNodeBuilder(
-                        new AddNodeBuilder(
-                                new ChangeSeedNodeBuilder(
-                                        Operation.ADD,
-                                        1,
-                                        new NoiseMapBuilder(1)
-                                ),
-                                new NoiseMapBuilder(1),
-                                new ChangeLocationNodeBuilder(
-                                        new ChangeSeedNodeBuilder(
-                                                Operation.ADD,
-                                                1,
-                                                new NoiseMapBuilder(5)
-                                        ),
-                                        Operation.DIVIDE,
-                                        Operation.DIVIDE,
-                                        10,
-                                        10
-                                ),
-                                new ChangeLocationNodeBuilder(
-                                        new ChangeSeedNodeBuilder(
-                                                Operation.ADD,
-                                                1,
-                                                new NoiseMapBuilder(1)
-                                        ),
-                                        Operation.DIVIDE,
-                                        Operation.DIVIDE,
-                                        100,
-                                        100
-                                )
-                        ),
-                        ValueOperation.POWER_START_NEGATIVE,
-                        3
-                )
-        );
-        ComplexNoise complexNoise = complexNoiseBuilder.build(110);
 
         // generate a 2d array of noise
         double[][] noise = new double[10000][2000];
@@ -79,13 +95,20 @@ class LibraryTest {
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
                 int color = (int) (noise[x][y] * 255);
-                int blue = 255-color;
-                int green = color;
+                int blue = 0;
+                int green = 0;
                 int red = 0;
                 if (color > 127) {
-                    blue = 0;
+                    green = 255-color;
+                    if (color > 191) {
+                        red = color;
+                        if (color > 223) {
+                            blue = color;
+                            green = color;
+                        }
+                    }
                 } else {
-                    green = 0;
+                    blue = color;
                 }
                 noiseImage.setRGB(x, y, (new Color(red, green, blue)).getRGB());
             }
