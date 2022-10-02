@@ -21,6 +21,15 @@ public enum ValueOperation {
             double sign = Math.signum(h);
             return (z * sign + 1) / 2;
         }
+    },
+    REMOVE_POURCENT {
+        @Override
+        public double apply(double a, double b) {
+            double n = Math.max(Math.min(a, 1 - b), b);
+            // normalize the value to be between 0 and 1
+
+            return n / (1 - (2 * b));
+        }
     };
 
     public abstract double apply(double a, double b);
