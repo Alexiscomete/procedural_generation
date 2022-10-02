@@ -46,8 +46,8 @@ class LibraryTest {
                                     100
                             )
                     ),
-                    ValueOperation.POWER_START_NEGATIVE,
-                    3
+                    ValueOperation.POWER_SYMMETRICAL,
+                    2
             )
     );
     ComplexNoise complexNoise = complexNoiseBuilder.build(110);

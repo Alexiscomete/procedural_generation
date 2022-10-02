@@ -12,6 +12,15 @@ public enum ValueOperation {
         public double apply(double a, double b) {
             return (Math.pow(a * 2 - 1, b) + 1) / 2;
         }
+    },
+    POWER_SYMMETRICAL {
+        @Override
+        public double apply(double a, double b) {
+            double h = a * 2 - 1;
+            double z = Math.pow(h, b);
+            double sign = Math.signum(h);
+            return (z * sign + 1) / 2;
+        }
     };
 
     public abstract double apply(double a, double b);
