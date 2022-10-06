@@ -27,7 +27,7 @@ class LibraryTest {
                                     new ChangeLocationNodeBuilder(
                                             new ChangeSeedNodeBuilder(
                                                     Operation.ADD,
-                                                    1,
+                                                    2,
                                                     new NoiseMapBuilder(5)
                                             ),
                                             Operation.DIVIDE,
@@ -38,13 +38,57 @@ class LibraryTest {
                                     new ChangeLocationNodeBuilder(
                                             new ChangeSeedNodeBuilder(
                                                     Operation.ADD,
-                                                    1,
+                                                    3,
                                                     new NoiseMapBuilder(1)
                                             ),
                                             Operation.DIVIDE,
                                             Operation.DIVIDE,
                                             100,
                                             100
+                                    ),
+                                    new ChangeLocationNodeBuilder(
+                                            new ChangeSeedNodeBuilder(
+                                                    Operation.ADD,
+                                                    4,
+                                                    new NoiseMapBuilder(1)
+                                            ),
+                                            Operation.DIVIDE,
+                                            Operation.DIVIDE,
+                                            1000,
+                                            1000
+                                    ),
+                                    new ChangeLocationNodeBuilder(
+                                            new ChangeSeedNodeBuilder(
+                                                    Operation.ADD,
+                                                    5,
+                                                    new NoiseMapBuilder(0.5)
+                                            ),
+                                            Operation.DIVIDE,
+                                            Operation.DIVIDE,
+                                            1000,
+                                            1000
+                                    ),
+                                    new ChangeLocationNodeBuilder(
+                                            new ChangeSeedNodeBuilder(
+                                                    Operation.ADD,
+                                                    6,
+                                                    new NoiseMapBuilder(0.5)
+                                            ),
+                                            Operation.DIVIDE,
+                                            Operation.DIVIDE,
+                                            10000,
+                                            10000
+                                    ),
+                                    new ChangeLocationNodeBuilder(
+                                            new ChangeSeedNodeBuilder(
+                                                    Operation.ADD,
+                                                    7,
+                                                    new NoiseMapBuilder(0.2)
+                                            ),
+                                            Operation.DIVIDE,
+                                            Operation.DIVIDE,
+                                            10000,
+                                            10000
                                     )
                             ),
                             ValueOperation.POWER_SYMMETRICAL,
