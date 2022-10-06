@@ -51,7 +51,7 @@ class LibraryTest {
                             2
                     ),
                     ValueOperation.REMOVE_POURCENT,
-                    0.2
+                    0.4
             )
     );
     ComplexNoise complexNoise = complexNoiseBuilder.build(110);
@@ -60,8 +60,10 @@ class LibraryTest {
     void someLibraryMethodReturnsTrue() {
         // verify if > 0 and < 1
         for (int i = 0; i < 10000; i++) {
-            double d = complexNoise.getValue(i, 0);
-            assertTrue(d >= 0 && d <= 1);
+            for (int j = 0; j < 2000; j++) {
+                double d = complexNoise.getValue(i, 0);
+                assertTrue(d >= 0 && d <= 1);
+            }
         }
     }
 
@@ -105,7 +107,7 @@ class LibraryTest {
                 if (color > 127) {
                     green = 255-color;
                     if (color > 191) {
-                        red = color;
+                        red = 255-color;
                         if (color > 223) {
                             blue = color;
                             green = color;
@@ -114,7 +116,11 @@ class LibraryTest {
                 } else {
                     blue = color;
                 }
-                noiseImage.setRGB(x, y, (new Color(red, green, blue)).getRGB());
+                try {
+                    noiseImage.setRGB(x, y, (new Color(red, green, blue)).getRGB());
+                } catch (Exception e) {
+                    System.out.println("x: " + x + " y: " + y + " color: " + color);
+                }
             }
         }
 

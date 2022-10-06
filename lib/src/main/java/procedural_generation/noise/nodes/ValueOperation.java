@@ -27,8 +27,11 @@ public enum ValueOperation {
         public double apply(double a, double b) {
             double n = Math.max(Math.min(a, 1 - b), b);
             // normalize the value to be between 0 and 1
-
-            return n / (1 - (2 * b));
+            double app = (n - b) / (1 - (2 * b));
+            if (app < 0 || app > 1) {
+                throw new RuntimeException("ValueOperation.REMOVE_POURCENT : " + app);
+            }
+            return app;
         }
     };
 
