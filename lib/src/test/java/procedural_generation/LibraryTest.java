@@ -141,7 +141,7 @@ class LibraryTest {
     void createNode() {
 
         // generate a 2d array of noise
-        double[][] noise = new double[8000][2000];
+        double[][] noise = new double[6000][2000];
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
                 noise[x][y] = complexNoise.getValue(x, y);
