@@ -18,22 +18,16 @@ class LibraryTest {
             new ValueOperationNodeBuilder(
                     new ValueOperationNodeBuilder(
                             new AddNodeBuilder(
-                                    new ChangeSeedNodeBuilder(
-                                            Operation.ADD,
-                                            1,
-                                            new NoiseMapBuilder(1)
-                                    ),
-                                    new NoiseMapBuilder(1),
                                     new ChangeLocationNodeBuilder(
                                             new ChangeSeedNodeBuilder(
                                                     Operation.ADD,
-                                                    2,
-                                                    new NoiseMapBuilder(5)
+                                                    4,
+                                                    new NoiseMapBuilder(1)
                                             ),
                                             Operation.DIVIDE,
                                             Operation.DIVIDE,
-                                            10,
-                                            10
+                                            1000,
+                                            1000
                                     ),
                                     new ChangeLocationNodeBuilder(
                                             new ChangeSeedNodeBuilder(
@@ -49,13 +43,19 @@ class LibraryTest {
                                     new ChangeLocationNodeBuilder(
                                             new ChangeSeedNodeBuilder(
                                                     Operation.ADD,
-                                                    4,
-                                                    new NoiseMapBuilder(1)
+                                                    2,
+                                                    new NoiseMapBuilder(5)
                                             ),
                                             Operation.DIVIDE,
                                             Operation.DIVIDE,
-                                            1000,
-                                            1000
+                                            10,
+                                            10
+                                    ),
+                                    new NoiseMapBuilder(1),
+                                    new ChangeSeedNodeBuilder(
+                                            Operation.ADD,
+                                            1,
+                                            new NoiseMapBuilder(1)
                                     ),
                                     new ChangeLocationNodeBuilder(
                                             new ChangeSeedNodeBuilder(
@@ -63,10 +63,10 @@ class LibraryTest {
                                                     5,
                                                     new NoiseMapBuilder(0.5)
                                             ),
-                                            Operation.DIVIDE,
-                                            Operation.DIVIDE,
-                                            1000,
-                                            1000
+                                            Operation.MULTIPLY,
+                                            Operation.MULTIPLY,
+                                            10,
+                                            10
                                     ),
                                     new ChangeLocationNodeBuilder(
                                             new ChangeSeedNodeBuilder(
@@ -74,10 +74,10 @@ class LibraryTest {
                                                     6,
                                                     new NoiseMapBuilder(0.5)
                                             ),
-                                            Operation.DIVIDE,
-                                            Operation.DIVIDE,
-                                            10000,
-                                            10000
+                                            Operation.MULTIPLY,
+                                            Operation.MULTIPLY,
+                                            100,
+                                            100
                                     ),
                                     new ChangeLocationNodeBuilder(
                                             new ChangeSeedNodeBuilder(
@@ -85,10 +85,10 @@ class LibraryTest {
                                                     7,
                                                     new NoiseMapBuilder(0.2)
                                             ),
-                                            Operation.DIVIDE,
-                                            Operation.DIVIDE,
-                                            10000,
-                                            10000
+                                            Operation.MULTIPLY,
+                                            Operation.MULTIPLY,
+                                            1000,
+                                            1000
                                     )
                             ),
                             ValueOperation.POWER_SYMMETRICAL,
@@ -133,7 +133,7 @@ class LibraryTest {
     void createNode() {
 
         // generate a 2d array of noise
-        double[][] noise = new double[10000][2000];
+        double[][] noise = new double[8000][2000];
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
                 noise[x][y] = complexNoise.getValue(x, y);
