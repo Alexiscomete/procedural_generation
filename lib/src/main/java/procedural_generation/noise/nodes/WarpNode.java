@@ -24,8 +24,8 @@ public class WarpNode implements Node {
     @Override
     public double getValue(double x, double y) {
         return node.getValue(
-                x + xCoefficient * node.getValue(x + xVector1, y + yVector1),
-                y + yCoefficient * node.getValue(x + xVector2, y + yVector2)
+                x + xCoefficient * (node.getValue(x + xVector1, y + yVector1) * 2 - 1),
+                y + yCoefficient * (node.getValue(x + xVector2, y + yVector2) * 2 - 1)
         );
     }
 
