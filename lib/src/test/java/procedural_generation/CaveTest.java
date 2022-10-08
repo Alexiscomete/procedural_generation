@@ -15,43 +15,35 @@ public class CaveTest {
     ComplexNoiseBuilder complexNoiseBuilder = new ComplexNoiseBuilder(
             new ValueOperationNodeBuilder(
                     new ValueOperationNodeBuilder(
-                            new WarpNodeBuilder(
-                                    new AddNodeBuilder(
-                                            new NoiseMapBuilder(2),
+                            new AddNodeBuilder(
+                                    new NoiseMapBuilder(2),
+                                    new ChangeSeedNodeBuilder(
+                                            Operation.ADD,
+                                            1,
+                                            new NoiseMapBuilder(2)
+                                    ),
+                                    new ChangeLocationNodeBuilder(
                                             new ChangeSeedNodeBuilder(
                                                     Operation.ADD,
-                                                    1,
-                                                    new NoiseMapBuilder(2)
+                                                    5,
+                                                    new NoiseMapBuilder(1)
                                             ),
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            5,
-                                                            new NoiseMapBuilder(1)
-                                                    ),
-                                                    Operation.MULTIPLY,
-                                                    Operation.MULTIPLY,
-                                                    10,
-                                                    10
-                                            ),
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            6,
-                                                            new NoiseMapBuilder(0.5)
-                                                    ),
-                                                    Operation.MULTIPLY,
-                                                    Operation.MULTIPLY,
-                                                    100,
-                                                    100
-                                            )
+                                            Operation.MULTIPLY,
+                                            Operation.MULTIPLY,
+                                            10,
+                                            10
                                     ),
-                                    0.0,
-                                    0.0,
-                                    5.2,
-                                    1.3,
-                                    0.4,
-                                    1
+                                    new ChangeLocationNodeBuilder(
+                                            new ChangeSeedNodeBuilder(
+                                                    Operation.ADD,
+                                                    6,
+                                                    new NoiseMapBuilder(0.5)
+                                            ),
+                                            Operation.MULTIPLY,
+                                            Operation.MULTIPLY,
+                                            100,
+                                            100
+                                    )
                             ),
                             ValueOperation.ABS,
                             0.5

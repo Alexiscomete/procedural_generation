@@ -17,87 +17,79 @@ class LibraryTest {
     ComplexNoiseBuilder complexNoiseBuilder = new ComplexNoiseBuilder(
             new ValueOperationNodeBuilder(
                     new ValueOperationNodeBuilder(
-                            new WarpNodeBuilder(
-                                    new AddNodeBuilder(
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            4,
-                                                            new NoiseMapBuilder(1)
-                                                    ),
-                                                    Operation.DIVIDE,
-                                                    Operation.DIVIDE,
-                                                    1000,
-                                                    1000
-                                            ),
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            3,
-                                                            new NoiseMapBuilder(1)
-                                                    ),
-                                                    Operation.DIVIDE,
-                                                    Operation.DIVIDE,
-                                                    100,
-                                                    100
-                                            ),
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            2,
-                                                            new NoiseMapBuilder(5)
-                                                    ),
-                                                    Operation.DIVIDE,
-                                                    Operation.DIVIDE,
-                                                    10,
-                                                    10
-                                            ),
-                                            new NoiseMapBuilder(1),
+                            new AddNodeBuilder(
+                                    new ChangeLocationNodeBuilder(
                                             new ChangeSeedNodeBuilder(
                                                     Operation.ADD,
-                                                    1,
+                                                    4,
                                                     new NoiseMapBuilder(1)
                                             ),
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            5,
-                                                            new NoiseMapBuilder(0.5)
-                                                    ),
-                                                    Operation.MULTIPLY,
-                                                    Operation.MULTIPLY,
-                                                    10,
-                                                    10
-                                            ),
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            6,
-                                                            new NoiseMapBuilder(0.5)
-                                                    ),
-                                                    Operation.MULTIPLY,
-                                                    Operation.MULTIPLY,
-                                                    100,
-                                                    100
-                                            ),
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            7,
-                                                            new NoiseMapBuilder(0.2)
-                                                    ),
-                                                    Operation.MULTIPLY,
-                                                    Operation.MULTIPLY,
-                                                    1000,
-                                                    1000
-                                            )
+                                            Operation.DIVIDE,
+                                            Operation.DIVIDE,
+                                            1000,
+                                            1000
                                     ),
-                                    0.0,
-                                    0.0,
-                                    5.2,
-                                    1.3,
-                                    0.4,
-                                    1
+                                    new ChangeLocationNodeBuilder(
+                                            new ChangeSeedNodeBuilder(
+                                                    Operation.ADD,
+                                                    3,
+                                                    new NoiseMapBuilder(1)
+                                            ),
+                                            Operation.DIVIDE,
+                                            Operation.DIVIDE,
+                                            100,
+                                            100
+                                    ),
+                                    new ChangeLocationNodeBuilder(
+                                            new ChangeSeedNodeBuilder(
+                                                    Operation.ADD,
+                                                    2,
+                                                    new NoiseMapBuilder(5)
+                                            ),
+                                            Operation.DIVIDE,
+                                            Operation.DIVIDE,
+                                            10,
+                                            10
+                                    ),
+                                    new NoiseMapBuilder(1),
+                                    new ChangeSeedNodeBuilder(
+                                            Operation.ADD,
+                                            1,
+                                            new NoiseMapBuilder(1)
+                                    ),
+                                    new ChangeLocationNodeBuilder(
+                                            new ChangeSeedNodeBuilder(
+                                                    Operation.ADD,
+                                                    5,
+                                                    new NoiseMapBuilder(0.5)
+                                            ),
+                                            Operation.MULTIPLY,
+                                            Operation.MULTIPLY,
+                                            10,
+                                            10
+                                    ),
+                                    new ChangeLocationNodeBuilder(
+                                            new ChangeSeedNodeBuilder(
+                                                    Operation.ADD,
+                                                    6,
+                                                    new NoiseMapBuilder(0.5)
+                                            ),
+                                            Operation.MULTIPLY,
+                                            Operation.MULTIPLY,
+                                            100,
+                                            100
+                                    ),
+                                    new ChangeLocationNodeBuilder(
+                                            new ChangeSeedNodeBuilder(
+                                                    Operation.ADD,
+                                                    7,
+                                                    new NoiseMapBuilder(0.2)
+                                            ),
+                                            Operation.MULTIPLY,
+                                            Operation.MULTIPLY,
+                                            1000,
+                                            1000
+                                    )
                             ),
                             ValueOperation.POWER_SYMMETRICAL,
                             2
