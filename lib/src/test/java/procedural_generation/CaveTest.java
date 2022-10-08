@@ -145,7 +145,7 @@ public class CaveTest {
     void createNode() {
 
         // generate a 2d array of noise
-        double[][] noise = new double[6000][2000];
+        double[][] noise = new double[3000][2000];
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
                 noise[x][y] = complexNoise.getValue(x, y);
@@ -157,13 +157,13 @@ public class CaveTest {
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
                 int color = (int) (noise[x][y] * 255);
-                int blue = 0;
-                int green = 0;
-                int red = 0;
-                if (color > 127) {
-                    green = color;
-                    red = color;
-                    blue = color;
+                int blue = 255 - color;
+                int green = 255 - color;
+                int red = 255 - color;
+                if (color > 135) {
+                    green = 0;
+                    red = 0;
+                    blue = 0;
                 }
                 try {
                     noiseImage.setRGB(x, y, (new Color(red, green, blue)).getRGB());

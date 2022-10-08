@@ -37,7 +37,7 @@ public enum ValueOperation {
     ABS {
         @Override
         public double apply(double a, double b) {
-            return Math.abs(a-b);
+            return Math.min(Math.abs(a - b) + b, 1);
         }
     };
 
