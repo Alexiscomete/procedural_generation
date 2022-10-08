@@ -33,6 +33,12 @@ public enum ValueOperation {
             }
             return app;
         }
+    },
+    ABS {
+        @Override
+        public double apply(double a, double b) {
+            return Math.abs(a-b);
+        }
     };
 
     public abstract double apply(double a, double b);
