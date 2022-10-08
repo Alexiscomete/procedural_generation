@@ -17,50 +17,17 @@ public class CaveTest {
                     new ValueOperationNodeBuilder(
                             new WarpNodeBuilder(
                                     new AddNodeBuilder(
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            4,
-                                                            new NoiseMapBuilder(1)
-                                                    ),
-                                                    Operation.DIVIDE,
-                                                    Operation.DIVIDE,
-                                                    1000,
-                                                    1000
-                                            ),
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            3,
-                                                            new NoiseMapBuilder(1)
-                                                    ),
-                                                    Operation.DIVIDE,
-                                                    Operation.DIVIDE,
-                                                    100,
-                                                    100
-                                            ),
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            2,
-                                                            new NoiseMapBuilder(5)
-                                                    ),
-                                                    Operation.DIVIDE,
-                                                    Operation.DIVIDE,
-                                                    10,
-                                                    10
-                                            ),
-                                            new NoiseMapBuilder(1),
+                                            new NoiseMapBuilder(2),
                                             new ChangeSeedNodeBuilder(
                                                     Operation.ADD,
                                                     1,
-                                                    new NoiseMapBuilder(1)
+                                                    new NoiseMapBuilder(2)
                                             ),
                                             new ChangeLocationNodeBuilder(
                                                     new ChangeSeedNodeBuilder(
                                                             Operation.ADD,
                                                             5,
-                                                            new NoiseMapBuilder(0.5)
+                                                            new NoiseMapBuilder(1)
                                                     ),
                                                     Operation.MULTIPLY,
                                                     Operation.MULTIPLY,
@@ -77,17 +44,6 @@ public class CaveTest {
                                                     Operation.MULTIPLY,
                                                     100,
                                                     100
-                                            ),
-                                            new ChangeLocationNodeBuilder(
-                                                    new ChangeSeedNodeBuilder(
-                                                            Operation.ADD,
-                                                            7,
-                                                            new NoiseMapBuilder(0.2)
-                                                    ),
-                                                    Operation.MULTIPLY,
-                                                    Operation.MULTIPLY,
-                                                    1000,
-                                                    1000
                                             )
                                     ),
                                     0.0,
@@ -160,7 +116,7 @@ public class CaveTest {
                 int blue = 255 - color;
                 int green = 255 - color;
                 int red = 255 - color;
-                if (color > 135) {
+                if (color > 137) {
                     green = 0;
                     red = 0;
                     blue = 0;
