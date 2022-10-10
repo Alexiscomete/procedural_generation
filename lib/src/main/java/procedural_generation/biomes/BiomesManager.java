@@ -26,11 +26,16 @@ public class BiomesManager {
         climatRules.add(climatRule);
     }
 
-    public HashMap<Biome, Double> getBiome(double x, double y) {
+    public HashMap<Biome, Double> getBiome(double x, double y, double currentAltitude) {
         // select all biomes with more than 10%
         HashMap<Biome, Double> biomePourcent = new HashMap<>();
+        // get climat pourcent
+        HashMap<ClimatRule, Double> climatPourcent = new HashMap<>();
+        for (ClimatRule climatRule : climatRules) {
+            climatPourcent.put(climatRule, climatRule.getRuleValue(x, y, currentAltitude));
+        }
         for (Biome biome : biomes) {
-            double pourcent = biome.pourcent(x, y, altitude, biomes, climatRules);
+            double pourcent = biome.pourcent(x, y, currentAltitude, climatPourcent, altitude);
             if (pourcent > 0.1) {
                 biomePourcent.put(biome, pourcent);
             }
@@ -38,4 +43,18 @@ public class BiomesManager {
         return biomePourcent;
     }
 
+    public double getFinalAltitude(double x, double y) {
+        double currentAltitude = altitude.getValue(x, y);
+        HashMap<Biome, Double> biomePourcent = getBiome(x, y, currentAltitude);
+        double finalAltitude = currentAltitude;
+        for (Biome biome : biomePourcent.keySet()) {
+            finalAltitude += biome.getAltitude(x, y, currentAltitude) * biomePourcent.get(biome);
+        }
+        // divide by the sum of all pourcent
+        double sum = 1;
+        for (double pourcent : biomePourcent.values()) {
+            sum += pourcent;
+        }
+        return finalAltitude / sum;
+    }
 }
