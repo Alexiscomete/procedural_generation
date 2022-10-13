@@ -6,9 +6,9 @@ public class ClimatMinMax {
     private final double acceptDistance;
 
     public ClimatMinMax(double min, double max, double acceptDistance) {
-        this.min = min;
-        this.max = max;
-        this.acceptDistance = acceptDistance;
+        this.min = min * 255;
+        this.max = max * 255;
+        this.acceptDistance = acceptDistance * 255;
     }
 
     public double getMin() {
@@ -24,10 +24,12 @@ public class ClimatMinMax {
     }
 
     public boolean isInRange(double value) {
+        value *= 255;
         return value >= min && value <= max;
     }
 
     public double distanceRange(double value) {
+        value *= 255;
         if (value < min) {
             double distance = min - value;
             if (distance > acceptDistance) {

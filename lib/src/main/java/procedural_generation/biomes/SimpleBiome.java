@@ -22,9 +22,10 @@ public class SimpleBiome implements Biome {
         double total = 0;
         for (ClimatRule climatRule : climatRules.keySet()) {
             Double pourcent = climatPourcent.get(climatRule);
-            if (pourcent != null) {
-                total += 1 - climatRules.get(climatRule).distanceRange(pourcent);
+            if (pourcent == null) {
+                pourcent = 0.0;
             }
+            total += 1 - climatRules.get(climatRule).distanceRange(pourcent);
         }
         return total / climatRules.size();
     }
