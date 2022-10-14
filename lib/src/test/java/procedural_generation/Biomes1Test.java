@@ -102,8 +102,8 @@ public class Biomes1Test {
         }
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes1 = new HashMap<>();
-        climatMinMaxes1.put(wind, new ClimatMinMax(0.4, 0.6, 0.1));
-        climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.6, 0.2));
+        climatMinMaxes1.put(wind, new ClimatMinMax(0.4, 0.5, 0.1));
+        climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.5, 0.2));
         climatMinMaxes1.put(humidity, new ClimatMinMax(0.6, 0.7, 0.1));
         Biome plaine = new SimpleBiome(0.6, "plaine", climatMinMaxes1);
         biomes.add(plaine);
@@ -131,11 +131,16 @@ public class Biomes1Test {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < high; y++) {
                 HashMap<ClimatRule, Double> values = biomesManager.getClimatRuleDoubleHashMap(x, y, 0.0);
-                int blue = (int) (montagne.pourcent(x, y, 0.0, values, complexNoise) * 255);
-                int green = (int) (plaine.pourcent(x, y, 0.0, values, complexNoise) * 255);
-                int red = (int) (desert.pourcent(x, y, 0.0, values, complexNoise) * 255);
+                int blue = (int) ((montagne.pourcent(x, y, 0.0, values, complexNoise)) * 255);
+                int green = (int) ((plaine.pourcent(x, y, 0.0, values, complexNoise)) * 255);
+                int red = (int) ((desert.pourcent(x, y, 0.0, values, complexNoise)) * 255);
+                // only keep the max
+                int max = Math.max(Math.max(red, green), blue);
+                red = max == red ? red : 0;
+                green = max == green ? green : 0;
+                blue = max == blue ? blue : 0;
                 try {
-                    noiseImage.setRGB(x, y, (new Color(red, green, blue)).getRGB());
+                    biomeImage.setRGB(x, y, (new Color(red, green, blue)).getRGB());
                 } catch (Exception ignored) {
 
                 }
