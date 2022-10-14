@@ -54,17 +54,6 @@ public class Biomes1Test {
                                 Operation.ADD,
                                 3,
                                 new NoiseMapBuilder(0.5)
-                        ),
-                        new ChangeLocationNodeBuilder(
-                                new ChangeSeedNodeBuilder(
-                                        Operation.ADD,
-                                        4,
-                                        new NoiseMapBuilder(0.25)
-                                ),
-                                Operation.MULTIPLY,
-                                Operation.MULTIPLY,
-                                10,
-                                10
                         )
                 )
         );
