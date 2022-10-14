@@ -102,23 +102,23 @@ public class Biomes1Test {
         }
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes1 = new HashMap<>();
-        climatMinMaxes1.put(wind, new ClimatMinMax(0.4, 0.5, 0.1));
-        climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.5, 0.2));
-        climatMinMaxes1.put(humidity, new ClimatMinMax(0.6, 0.7, 0.1));
+        climatMinMaxes1.put(wind, new ClimatMinMax(0.4, 0.5, 0.2));
+        climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.5, 0.1));
+        climatMinMaxes1.put(humidity, new ClimatMinMax(0.5, 0.7, 0.1));
         Biome plaine = new SimpleBiome(0.6, "plaine", climatMinMaxes1);
         biomes.add(plaine);
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes2 = new HashMap<>();
-        climatMinMaxes2.put(wind, new ClimatMinMax(0.5, 0.6, 0.1));
-        climatMinMaxes2.put(temperature, new ClimatMinMax(0.7, 0.8, 0.2));
-        climatMinMaxes2.put(humidity, new ClimatMinMax(0.3, 0.4, 0.1));
+        climatMinMaxes2.put(wind, new ClimatMinMax(0.5, 0.6, 0.4));
+        climatMinMaxes2.put(temperature, new ClimatMinMax(0.8, 0.9, 0.3));
+        climatMinMaxes2.put(humidity, new ClimatMinMax(0.0, 0.4, 0.2));
         Biome desert = new SimpleBiome(0.7, "desert", climatMinMaxes2);
         biomes.add(desert);
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes3 = new HashMap<>();
-        climatMinMaxes3.put(wind, new ClimatMinMax(0.1, 0.2, 0.2));
-        climatMinMaxes3.put(temperature, new ClimatMinMax(0.4, 0.6, 0.1));
-        climatMinMaxes3.put(humidity, new ClimatMinMax(0.6, 0.7, 0.1));
+        climatMinMaxes3.put(wind, new ClimatMinMax(0.6, 0.8, 0.2));
+        climatMinMaxes3.put(temperature, new ClimatMinMax(0.2, 0.5, 0.1));
+        climatMinMaxes3.put(humidity, new ClimatMinMax(0.5, 0.7, 0.1));
         Biome montagne = new SimpleBiome(0.8, "montagne", climatMinMaxes3);
         biomes.add(montagne);
 
