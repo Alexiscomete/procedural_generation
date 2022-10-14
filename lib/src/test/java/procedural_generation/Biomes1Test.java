@@ -11,10 +11,7 @@ import procedural_generation.climat.ClimatRuleType;
 import procedural_generation.noise.ComplexNoise;
 import procedural_generation.noise.ComplexNoiseBuilder;
 import procedural_generation.noise.NoiseMapBuilder;
-import procedural_generation.noise.nodes.AddNodeBuilder;
-import procedural_generation.noise.nodes.ChangeLocationNodeBuilder;
-import procedural_generation.noise.nodes.ChangeSeedNodeBuilder;
-import procedural_generation.noise.nodes.Operation;
+import procedural_generation.noise.nodes.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -139,6 +136,28 @@ public class Biomes1Test {
         // save the image
         try {
             javax.imageio.ImageIO.write(biomeImage, "png", new java.io.File("biome1.png"));
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+
+        BufferedImage alt = new BufferedImage(width, high, BufferedImage.TYPE_INT_RGB);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < high; y++) {
+                int color = (int) (ValueOperation.REMOVE_POURCENT.apply(biomesManager.getFinalAltitude(x, y), 0.4) * 255);
+                int blue = color;
+                int green = color;
+                int red = color;
+                try {
+                    alt.setRGB(x, y, (new Color(red, green, blue)).getRGB());
+                } catch (Exception ignored) {
+
+                }
+            }
+        }
+
+        // save the image
+        try {
+            javax.imageio.ImageIO.write(alt, "png", new java.io.File("alt1.png"));
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
