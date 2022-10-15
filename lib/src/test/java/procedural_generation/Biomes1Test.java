@@ -91,21 +91,21 @@ public class Biomes1Test {
         climatMinMaxes1.put(wind, new ClimatMinMax(0.4, 0.5, 0.2));
         climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.5, 0.1));
         climatMinMaxes1.put(humidity, new ClimatMinMax(0.5, 0.7, 0.1));
-        Biome plaine = new SimpleBiome(0.6, "plaine", climatMinMaxes1);
+        Biome plaine = new SimpleBiome(0.51, "plaine", climatMinMaxes1);
         biomes.add(plaine);
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes2 = new HashMap<>();
         climatMinMaxes2.put(wind, new ClimatMinMax(0.5, 0.6, 0.4));
         climatMinMaxes2.put(temperature, new ClimatMinMax(0.8, 0.9, 0.3));
         climatMinMaxes2.put(humidity, new ClimatMinMax(0.0, 0.4, 0.2));
-        Biome desert = new SimpleBiome(0.7, "desert", climatMinMaxes2);
+        Biome desert = new SimpleBiome(0.6, "desert", climatMinMaxes2);
         biomes.add(desert);
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes3 = new HashMap<>();
         climatMinMaxes3.put(wind, new ClimatMinMax(0.6, 0.8, 0.2));
         climatMinMaxes3.put(temperature, new ClimatMinMax(0.2, 0.5, 0.1));
         climatMinMaxes3.put(humidity, new ClimatMinMax(0.5, 0.7, 0.1));
-        Biome montagne = new SimpleBiome(0.8, "montagne", climatMinMaxes3);
+        Biome montagne = new SimpleBiome(0.9, "montagne", climatMinMaxes3);
         biomes.add(montagne);
 
         ComplexNoise complexNoise = complexNoiseBuilder.build(0);
@@ -140,13 +140,60 @@ public class Biomes1Test {
             e.printStackTrace();
         }
 
+        BufferedImage alt0 = new BufferedImage(width, high, BufferedImage.TYPE_INT_RGB);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < high; y++) {
+                int color = (int) (ValueOperation.REMOVE_POURCENT.apply(complexNoise.getValue(x, y), 0.25) * 255);
+                int blue = 0;
+                int green = 0;
+                int red = 0;
+                if (color > 127) {
+                    green = 255 - color;
+                    if (color > 191) {
+                        red = 255 - color;
+                        if (color > 223) {
+                            blue = color;
+                            green = color;
+                        }
+                    }
+                } else {
+                    blue = color;
+                }
+                try {
+                    alt0.setRGB(x, y, (new Color(red, green, blue)).getRGB());
+                } catch (Exception ignored) {
+
+                }
+            }
+        }
+
+        // save the image
+        try {
+            javax.imageio.ImageIO.write(alt0, "png", new java.io.File("alt01.png"));
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+
+
         BufferedImage alt = new BufferedImage(width, high, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < high; y++) {
-                int color = (int) (ValueOperation.REMOVE_POURCENT.apply(biomesManager.getFinalAltitude(x, y), 0.4) * 255);
-                int blue = color;
-                int green = color;
-                int red = color;
+                int color = (int) (ValueOperation.REMOVE_POURCENT.apply(biomesManager.getFinalAltitude(x, y), 0.2) * 255);
+                int blue = 0;
+                int green = 0;
+                int red = 0;
+                if (color > 127) {
+                    green = 255 - color;
+                    if (color > 191) {
+                        red = 255 - color;
+                        if (color > 223) {
+                            blue = color;
+                            green = color;
+                        }
+                    }
+                } else {
+                    blue = color;
+                }
                 try {
                     alt.setRGB(x, y, (new Color(red, green, blue)).getRGB());
                 } catch (Exception ignored) {

@@ -51,14 +51,29 @@ public class BiomesManager {
     public double getFinalAltitude(double x, double y) {
         double currentAltitude = altitude.getValue(x, y);
         HashMap<Biome, Double> biomePourcent = getBiome(x, y, currentAltitude);
+        // select the biome with the highest pourcent
+        Biome biome0 = null;
+        double biomePourcentValue = 0.2;
+        for (Biome biome1 : biomePourcent.keySet()) {
+            if (biomePourcent.get(biome1) > biomePourcentValue) {
+                biomePourcentValue = biomePourcent.get(biome1);
+                biome0 = biome1;
+            }
+        }
+        if (biome0 == null) {
+            return currentAltitude;
+        }
+        if (biomePourcentValue > 0.9) {
+            return biome0.getAltitude(x, y, currentAltitude);
+        }
         double finalAltitude = currentAltitude;
         for (Biome biome : biomePourcent.keySet()) {
-            finalAltitude += biome.getAltitude(x, y, currentAltitude) * biomePourcent.get(biome);
+            finalAltitude += biome.getAltitude(x, y, currentAltitude) * biomePourcent.get(biome) * 4;
         }
         // divide by the sum of all pourcent
         double sum = 1;
         for (double pourcent : biomePourcent.values()) {
-            sum += pourcent;
+            sum += pourcent * 4;
         }
         return finalAltitude / sum;
     }
