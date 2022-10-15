@@ -88,24 +88,24 @@ public class Biomes1Test {
         }
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes1 = new HashMap<>();
-        climatMinMaxes1.put(wind, new ClimatMinMax(0.4, 0.5, 0.2));
-        climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.5, 0.1));
-        climatMinMaxes1.put(humidity, new ClimatMinMax(0.5, 0.7, 0.1));
+        climatMinMaxes1.put(wind, new ClimatMinMax(0.4, 0.5, 0.3));
+        climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.5, 0.2));
+        climatMinMaxes1.put(humidity, new ClimatMinMax(0.5, 0.7, 0.2));
         Biome plaine = new SimpleBiome(0.51, "plaine", climatMinMaxes1);
         biomes.add(plaine);
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes2 = new HashMap<>();
-        climatMinMaxes2.put(wind, new ClimatMinMax(0.5, 0.6, 0.4));
-        climatMinMaxes2.put(temperature, new ClimatMinMax(0.8, 0.9, 0.3));
-        climatMinMaxes2.put(humidity, new ClimatMinMax(0.0, 0.4, 0.2));
+        climatMinMaxes2.put(wind, new ClimatMinMax(0.5, 0.6, 0.5));
+        climatMinMaxes2.put(temperature, new ClimatMinMax(0.8, 0.9, 0.4));
+        climatMinMaxes2.put(humidity, new ClimatMinMax(0.0, 0.4, 0.3));
         Biome desert = new SimpleBiome(0.6, "desert", climatMinMaxes2);
         biomes.add(desert);
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes3 = new HashMap<>();
-        climatMinMaxes3.put(wind, new ClimatMinMax(0.6, 0.8, 0.2));
-        climatMinMaxes3.put(temperature, new ClimatMinMax(0.2, 0.5, 0.1));
-        climatMinMaxes3.put(humidity, new ClimatMinMax(0.5, 0.7, 0.1));
-        Biome montagne = new SimpleBiome(0.9, "montagne", climatMinMaxes3);
+        climatMinMaxes3.put(wind, new ClimatMinMax(0.6, 0.8, 0.3));
+        climatMinMaxes3.put(temperature, new ClimatMinMax(0.2, 0.5, 0.2));
+        climatMinMaxes3.put(humidity, new ClimatMinMax(0.5, 0.7, 0.2));
+        Biome montagne = new SimpleBiome(0.8, "montagne", climatMinMaxes3);
         biomes.add(montagne);
 
         ComplexNoise complexNoise = complexNoiseBuilder.build(0);
@@ -178,7 +178,7 @@ public class Biomes1Test {
         BufferedImage alt = new BufferedImage(width, high, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < high; y++) {
-                int color = (int) (ValueOperation.REMOVE_POURCENT.apply(biomesManager.getFinalAltitude(x, y), 0.2) * 255);
+                int color = (int) (ValueOperation.REMOVE_POURCENT.apply(biomesManager.getFinalAltitude(x, y), 0.1) * 255);
                 int blue = 0;
                 int green = 0;
                 int red = 0;

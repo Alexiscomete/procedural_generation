@@ -53,7 +53,7 @@ public class BiomesManager {
         HashMap<Biome, Double> biomePourcent = getBiome(x, y, currentAltitude);
         // select the biome with the highest pourcent
         Biome biome0 = null;
-        double biomePourcentValue = 0.2;
+        double biomePourcentValue = 0.5;
         for (Biome biome1 : biomePourcent.keySet()) {
             if (biomePourcent.get(biome1) > biomePourcentValue) {
                 biomePourcentValue = biomePourcent.get(biome1);
@@ -68,12 +68,12 @@ public class BiomesManager {
         }
         double finalAltitude = currentAltitude;
         for (Biome biome : biomePourcent.keySet()) {
-            finalAltitude += biome.getAltitude(x, y, currentAltitude) * biomePourcent.get(biome) * 4;
+            finalAltitude += biome.getAltitude(x, y, currentAltitude) * biomePourcent.get(biome);
         }
         // divide by the sum of all pourcent
         double sum = 1;
         for (double pourcent : biomePourcent.values()) {
-            sum += pourcent * 4;
+            sum += pourcent;
         }
         return finalAltitude / sum;
     }
