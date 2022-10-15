@@ -90,7 +90,7 @@ public class Biomes1Test {
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes1 = new HashMap<>();
         climatMinMaxes1.put(wind, new ClimatMinMax(0.4, 0.5, 0.3));
         climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.5, 0.2));
-        climatMinMaxes1.put(humidity, new ClimatMinMax(0.5, 0.7, 0.2));
+        climatMinMaxes1.put(humidity, new ClimatMinMax(0.6, 0.7, 0.2));
         Biome plaine = new SimpleBiome(0.51, "plaine", climatMinMaxes1);
         biomes.add(plaine);
 
@@ -104,7 +104,7 @@ public class Biomes1Test {
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes3 = new HashMap<>();
         climatMinMaxes3.put(wind, new ClimatMinMax(0.6, 0.8, 0.3));
         climatMinMaxes3.put(temperature, new ClimatMinMax(0.2, 0.5, 0.2));
-        climatMinMaxes3.put(humidity, new ClimatMinMax(0.5, 0.7, 0.2));
+        climatMinMaxes3.put(humidity, new ClimatMinMax(0.6, 0.8, 0.2));
         Biome montagne = new SimpleBiome(0.8, "montagne", climatMinMaxes3);
         biomes.add(montagne);
 
@@ -121,7 +121,7 @@ public class Biomes1Test {
                 int green = (int) ((plaine.pourcent(x, y, 0.0, values, complexNoise)) * 255);
                 int red = (int) ((desert.pourcent(x, y, 0.0, values, complexNoise)) * 255);
                 // only keep the max
-                int max = Math.max(Math.max(red, green), blue);
+                int max = Math.max(Math.max(Math.max(red, green), blue), 229);
                 red = max == red ? red : 0;
                 green = max == green ? green : 0;
                 blue = max == blue ? blue : 0;

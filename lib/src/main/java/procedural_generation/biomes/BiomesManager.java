@@ -61,17 +61,26 @@ public class BiomesManager {
             }
         }
         if (biome0 == null) {
-            return currentAltitude;
+            double finalAltitude = currentAltitude;
+            for (Biome biome : biomePourcent.keySet()) {
+                finalAltitude += biome.getAltitude(x, y, currentAltitude) * biomePourcent.get(biome);
+            }
+            // divide by the sum of all pourcent
+            double sum = 1;
+            for (double pourcent : biomePourcent.values()) {
+                sum += pourcent;
+            }
+            return finalAltitude / sum;
         }
         if (biomePourcentValue > 0.9) {
             return biome0.getAltitude(x, y, currentAltitude);
         }
-        double finalAltitude = currentAltitude;
+        double finalAltitude = 0;
         for (Biome biome : biomePourcent.keySet()) {
             finalAltitude += biome.getAltitude(x, y, currentAltitude) * biomePourcent.get(biome);
         }
         // divide by the sum of all pourcent
-        double sum = 1;
+        double sum = 0;
         for (double pourcent : biomePourcent.values()) {
             sum += pourcent;
         }
