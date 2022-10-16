@@ -83,7 +83,7 @@ public class BiomesManager {
             }
             return finalAltitude / sum;
         }
-        if (biomePourcentValue > 0.9) {
+        if (biomePourcentValue > 0.75) {
             return biome0.getAltitude(x, y, currentAltitude);
         }
         double finalAltitude = 0;

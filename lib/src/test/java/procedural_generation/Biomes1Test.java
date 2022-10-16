@@ -121,10 +121,12 @@ public class Biomes1Test {
                 int green = (int) ((plaine.pourcent(x, y, 0.0, values, complexNoise)) * 255);
                 int red = (int) ((desert.pourcent(x, y, 0.0, values, complexNoise)) * 255);
                 // only keep the max
-                int max = Math.max(Math.max(Math.max(red, green), blue), 229);
-                red = max == red ? red : 0;
-                green = max == green ? green : 0;
-                blue = max == blue ? blue : 0;
+                int max = Math.max(Math.max(Math.max(red, green), blue), 190);
+                if (max != 190) {
+                    red = max == red ? red : 0;
+                    green = max == green ? green : 0;
+                    blue = max == blue ? blue : 0;
+                }
                 try {
                     biomeImage.setRGB(x, y, (new Color(red, green, blue)).getRGB());
                 } catch (Exception ignored) {
