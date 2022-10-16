@@ -6,6 +6,9 @@ import procedural_generation.noise.ComplexNoise;
 
 import java.util.HashMap;
 
+/**
+ * Generate a biome with a simple algorithm. It is based on the climat rules and min-max : you have a min value and a max value for each biome. The altitude ist constant.
+ */
 public class SimpleBiome implements Biome {
     private final double altitude;
     private final String name;
