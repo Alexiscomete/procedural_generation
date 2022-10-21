@@ -114,15 +114,31 @@ public class Biomes1Test {
 
         // generate an image of the biomes (color)
         BufferedImage biomeImage = new BufferedImage(width, high, BufferedImage.TYPE_INT_RGB);
+        BufferedImage biomeMontagne = new BufferedImage(width, high, BufferedImage.TYPE_INT_RGB);
+        BufferedImage biomePlaine = new BufferedImage(width, high, BufferedImage.TYPE_INT_RGB);
+        BufferedImage biomeDesert = new BufferedImage(width, high, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < high; y++) {
                 HashMap<ClimatRule, Double> values = biomesManager.getClimatRuleDoubleHashMap(x, y, 0.0);
-                int blue = (int) ((montagne.pourcent(x, y, 0.0, values, complexNoise)) * 255);
-                int green = (int) ((plaine.pourcent(x, y, 0.0, values, complexNoise)) * 255);
-                int red = (int) ((desert.pourcent(x, y, 0.0, values, complexNoise)) * 255);
+                HashMap<Biome, Double> biomeValues = biomesManager.getBiomes(x, y, 0.0);
+                // get values
+                Double montagneValue = biomeValues.get(montagne);
+                Double plaineValue = biomeValues.get(plaine);
+                Double desertValue = biomeValues.get(desert);
+                int blue = montagneValue != null ? (int) (montagneValue * 255) : 0;
+                int green = plaineValue != null ? (int) (plaineValue * 255) : 0;
+                int red = desertValue != null ? (int) (desertValue * 255) : 0;
+                try {
+                    biomeMontagne.setRGB(x, y, (new Color(0, 0, blue)).getRGB());
+                    biomePlaine.setRGB(x, y, (new Color(0, green, 0)).getRGB());
+                    biomeDesert.setRGB(x, y, (new Color(red, 0, 0)).getRGB());
+                } catch (Exception ignored) {
+
+                }
                 // only keep the max
-                int max = Math.max(Math.max(Math.max(red, green), blue), 190);
-                if (max != 190) {
+                int base = 185;
+                int max = Math.max(Math.max(Math.max(red, green), blue), base);
+                if (max != base) {
                     red = max == red ? red : 0;
                     green = max == green ? green : 0;
                     blue = max == blue ? blue : 0;
@@ -138,6 +154,9 @@ public class Biomes1Test {
         // save the image
         try {
             javax.imageio.ImageIO.write(biomeImage, "png", new java.io.File("biome1.png"));
+            javax.imageio.ImageIO.write(biomeMontagne, "png", new java.io.File("biomeMontagne1.png"));
+            javax.imageio.ImageIO.write(biomePlaine, "png", new java.io.File("biomePlaine1.png"));
+            javax.imageio.ImageIO.write(biomeDesert, "png", new java.io.File("biomeDesert1.png"));
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
