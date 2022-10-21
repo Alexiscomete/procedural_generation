@@ -28,6 +28,13 @@ public class ClimatMinMax {
         return value >= min && value <= max;
     }
 
+    /**
+     * If the value is within the range, return 0. If the value is outside the range, return the distance from the range
+     * divided by the acceptDistance
+     *
+     * @param value The value to check.
+     * @return The distance from the value to the range.
+     */
     public double distanceRange(double value) {
         value *= 255;
         if (value < min) {
