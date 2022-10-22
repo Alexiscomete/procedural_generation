@@ -90,20 +90,20 @@ public class Biomes1Test {
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes1 = new HashMap<>();
         climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.45, 0.4));
         climatMinMaxes1.put(humidity, new ClimatMinMax(0.6, 0.65, 0.4));
-        Biome plaine = new SimpleBiome(0.51, "plaine", climatMinMaxes1);
+        Biome plaine = new SimpleBiome(0.51, "plaine", climatMinMaxes1, 0.1);
         biomes.add(plaine);
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes2 = new HashMap<>();
         climatMinMaxes2.put(wind, new ClimatMinMax(0.5, 0.6, 0.6));
         climatMinMaxes2.put(temperature, new ClimatMinMax(0.8, 0.9, 0.5));
         climatMinMaxes2.put(humidity, new ClimatMinMax(0.0, 0.4, 0.5));
-        Biome desert = new SimpleBiome(0.6, "desert", climatMinMaxes2);
+        Biome desert = new SimpleBiome(0.6, "desert", climatMinMaxes2, 0.1);
         biomes.add(desert);
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes3 = new HashMap<>();
         climatMinMaxes3.put(wind, new ClimatMinMax(0.6, 0.8, 0.6));
         climatMinMaxes3.put(temperature, new ClimatMinMax(0.0, 0.4, 0.5));
-        Biome montagne = new SimpleBiome(0.8, "montagne", climatMinMaxes3);
+        Biome montagne = new SimpleBiome(0.8, "montagne", climatMinMaxes3, 0.3);
         biomes.add(montagne);
 
         ComplexNoise complexNoise = complexNoiseBuilder.build(0);

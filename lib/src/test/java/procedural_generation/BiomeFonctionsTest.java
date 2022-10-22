@@ -43,7 +43,7 @@ public class BiomeFonctionsTest {
         for (ClimatRule climatRule : climatRules) {
             climatMinMaxHashMap.put(climatRule, new ClimatMinMax(0.7, 0.8, 0.01));
         }
-        SimpleBiome simpleBiome = new SimpleBiome(0.6, "plaine", climatMinMaxHashMap);
+        SimpleBiome simpleBiome = new SimpleBiome(0.6, "plaine", climatMinMaxHashMap, 1);
 
         // generate a 2d array of noise
         double[][] noise = new double[6000][2000];
