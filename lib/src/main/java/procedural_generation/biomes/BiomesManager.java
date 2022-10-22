@@ -42,8 +42,8 @@ public class BiomesManager {
     /**
      * It returns a HashMap of Biome and Double, where the Double is the percentage of the Biome at the given coordinates
      *
-     * @param x the x coordinate of the point
-     * @param y the y coordinate of the point
+     * @param x               the x coordinate of the point
+     * @param y               the y coordinate of the point
      * @param currentAltitude the altitude of the current point
      * @return A HashMap of Biome and Double.
      */
@@ -51,18 +51,26 @@ public class BiomesManager {
         HashMap<Biome, Double> biomePourcent = new HashMap<>();
         HashMap<ClimatRule, Double> climatPourcent = getClimatRuleDoubleHashMap(x, y, currentAltitude);
         double sum = 0;
+        double max = 0.73;
+        Biome biomeMax = null;
         for (Biome biome : biomes) {
             double pourcent = biome.pourcent(x, y, currentAltitude, climatPourcent, altitude);
-            if (pourcent > 0.73) {
-                biomePourcent.clear();
-                biomePourcent.put(biome, pourcent);
-                return biomePourcent;
+            if (pourcent > max) {
+                max = pourcent;
+                biomeMax = biome;
             }
 
             biomePourcent.put(biome, pourcent);
             sum += pourcent;
 
         }
+
+        if (biomeMax != null) {
+            biomePourcent.clear();
+            biomePourcent.put(biomeMax, max);
+            return biomePourcent;
+        }
+
         // normalize
         for (Biome biome : biomePourcent.keySet()) {
             double pourcent = biomePourcent.get(biome);
@@ -74,8 +82,8 @@ public class BiomesManager {
     /**
      * It returns a HashMap of ClimatRule and Double, which is the climat pourcent for each climat rule
      *
-     * @param x the x coordinate of the point
-     * @param y the y coordinate of the point
+     * @param x               the x coordinate of the point
+     * @param y               the y coordinate of the point
      * @param currentAltitude the altitude of the current point
      * @return A HashMap of ClimatRule and Double.
      */

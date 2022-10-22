@@ -88,21 +88,21 @@ public class Biomes1Test {
         }
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes1 = new HashMap<>();
-        climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.5, 0.3));
-        climatMinMaxes1.put(humidity, new ClimatMinMax(0.6, 0.65, 0.3));
+        climatMinMaxes1.put(temperature, new ClimatMinMax(0.4, 0.45, 0.4));
+        climatMinMaxes1.put(humidity, new ClimatMinMax(0.6, 0.65, 0.4));
         Biome plaine = new SimpleBiome(0.51, "plaine", climatMinMaxes1);
         biomes.add(plaine);
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes2 = new HashMap<>();
-        climatMinMaxes2.put(wind, new ClimatMinMax(0.5, 0.6, 0.5));
-        climatMinMaxes2.put(temperature, new ClimatMinMax(0.8, 0.9, 0.4));
-        climatMinMaxes2.put(humidity, new ClimatMinMax(0.0, 0.4, 0.4));
+        climatMinMaxes2.put(wind, new ClimatMinMax(0.5, 0.6, 0.6));
+        climatMinMaxes2.put(temperature, new ClimatMinMax(0.8, 0.9, 0.5));
+        climatMinMaxes2.put(humidity, new ClimatMinMax(0.0, 0.4, 0.5));
         Biome desert = new SimpleBiome(0.6, "desert", climatMinMaxes2);
         biomes.add(desert);
 
         HashMap<ClimatRule, ClimatMinMax> climatMinMaxes3 = new HashMap<>();
-        climatMinMaxes3.put(wind, new ClimatMinMax(0.6, 0.8, 0.4));
-        climatMinMaxes3.put(temperature, new ClimatMinMax(0.0, 0.5, 0.3));
+        climatMinMaxes3.put(wind, new ClimatMinMax(0.6, 0.8, 0.6));
+        climatMinMaxes3.put(temperature, new ClimatMinMax(0.0, 0.4, 0.5));
         Biome montagne = new SimpleBiome(0.8, "montagne", climatMinMaxes3);
         biomes.add(montagne);
 
@@ -117,7 +117,6 @@ public class Biomes1Test {
         BufferedImage biomeDesert = new BufferedImage(width, high, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < high; y++) {
-                HashMap<ClimatRule, Double> values = biomesManager.getClimatRuleDoubleHashMap(x, y, 0.0);
                 HashMap<Biome, Double> biomeValues = biomesManager.getBiomes(x, y, 0.0);
                 // get values
                 Double montagneValue = biomeValues.get(montagne);
