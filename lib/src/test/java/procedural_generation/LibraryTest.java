@@ -111,13 +111,6 @@ class LibraryTest {
         }
     }
 
-    @Test
-    void verifHight() {
-        assertTrue(existMax(0.7));
-        assertTrue(existMax(0.8));
-        assertTrue(existMax(0.9));
-    }
-
     boolean existMax(double value) {
         for (int i = 0; i < 1000; i++) {
             for (int j = 0; j < 1000; j++) {
