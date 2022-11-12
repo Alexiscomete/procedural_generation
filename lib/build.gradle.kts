@@ -17,8 +17,9 @@ repositories {
     mavenCentral()
 }
 
-version = "1.0-SNAPSHOT"
+version = "Tagtest6"
 description = "Procedural generation of a map"
+group = "io.github.alexiscomete.procedural-map-generation"
 
 dependencies {
     // Use JUnit Jupiter for testing.
