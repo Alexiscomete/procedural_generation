@@ -18,7 +18,7 @@ repositories {
 }
 
 version = "1.0-SNAPSHOT"
-description = "A-Discord-Adventure"
+description = "Procedural generation of a map"
 
 dependencies {
     // Use JUnit Jupiter for testing.
@@ -51,7 +51,7 @@ publishing {
     }
     publications {
         register<MavenPublication>("gpr") {
-            artifactId = "ada"
+            artifactId = "lib"
             artifact(tasks.build)
         }
     }
