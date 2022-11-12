@@ -52,7 +52,7 @@ publishing {
     publications {
         register<MavenPublication>("gpr") {
             artifactId = "lib"
-            artifact(tasks.build)
+            from(components["java"])
         }
     }
 }
