@@ -17,7 +17,7 @@ repositories {
     mavenCentral()
 }
 
-version = "Tagtest6"
+version = "Tagtest7"
 description = "Procedural generation of a map"
 group = "io.github.alexiscomete.procedural-map-generation"
 
