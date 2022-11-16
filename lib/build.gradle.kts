@@ -19,7 +19,7 @@ repositories {
 
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
-version = "Tagtest8"
+version = "Tagtest9"
 description = "Procedural generation of a map"
 group = "io.github.alexiscomete.procedural-map-generation"
 
