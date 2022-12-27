@@ -10,16 +10,42 @@ public class ImageMaskNode implements Node {
     private final double weight;
     private final Color colorMax;
     private final Color colorMin;
+    private final int neighbors;
 
-    public ImageMaskNode(BufferedImage image, double weight, Color colorMax, Color colorMin) {
+    public ImageMaskNode(BufferedImage image, double weight, Color colorMax, Color colorMin, int neighbors) {
         this.image = image;
         this.weight = weight;
         this.colorMax = colorMax;
         this.colorMin = colorMin;
+        this.neighbors = neighbors;
     }
 
-    @Override
-    public double getValue(double x, double y) {
+    public double getNeighborsValue(int distance, double x, double y) {
+        if (distance <= 0) {
+            return 0;
+        }
+        double value = 0;
+        // get the average value of the neighbors for the given distance. The value is between 0 and 1. The pixels inside the square are excluded.
+        // first row
+        for (int i = 0; i < distance * 2 + 1; i++) {
+            value += getSimpleValue(x - distance + i, y - distance);
+        }
+        // first column
+        for (int i = 1; i < distance * 2; i++) {
+            value += getSimpleValue(x - distance, y - distance + i);
+        }
+        // last column
+        for (int i = 1; i < distance * 2; i++) {
+            value += getSimpleValue(x + distance, y - distance + i);
+        }
+        // last row
+        for (int i = 0; i < distance * 2 + 1; i++) {
+            value += getSimpleValue(x - distance + i, y + distance);
+        }
+        return value / (distance * 8);
+    }
+
+    public double getSimpleValue(double x, double y) {
         // case 1 : out of bounds
         if (x < 0 || x >= image.getWidth() || y < 0 || y >= image.getHeight()) {
             return 0.5;
@@ -60,6 +86,17 @@ public class ImageMaskNode implements Node {
         }
         // case 3 : color is in between
         return 0.5;
+    }
+
+    @Override
+    public double getValue(double x, double y) {
+        double value = getSimpleValue(x, y);
+        double divideBy = 1;
+        for (int i = 1; i <= neighbors; i++) {
+            value += getNeighborsValue(i, x, y) / i;
+            divideBy += (1.0 / i);
+        }
+        return value / divideBy;
     }
 
     @Override

@@ -11,16 +11,18 @@ public class ImageMaskNodeBuilder implements NodeBuilder {
     private final double weight;
     private final Color colorMax;
     private final Color colorMin;
+    private final int neighbors;
 
-    public ImageMaskNodeBuilder(BufferedImage image, double weight, Color colorMax, Color colorMin) {
+    public ImageMaskNodeBuilder(BufferedImage image, double weight, Color colorMax, Color colorMin, int neighbors) {
         this.image = image;
         this.weight = weight;
         this.colorMax = colorMax;
         this.colorMin = colorMin;
+        this.neighbors = neighbors;
     }
 
     @Override
     public Node build(long seed) {
-        return new ImageMaskNode(image, weight, colorMax, colorMin);
+        return new ImageMaskNode(image, weight, colorMax, colorMin, neighbors);
     }
 }

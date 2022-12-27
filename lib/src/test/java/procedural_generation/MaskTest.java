@@ -38,31 +38,93 @@ public class MaskTest {
                                         new ChangeLocationNodeBuilder(
                                                 new ChangeSeedNodeBuilder(
                                                         Operation.ADD,
-                                                        1,
+                                                        4,
+                                                        new NoiseMapBuilder(5.0)
+                                                ),
+                                                Operation.DIVIDE,
+                                                Operation.DIVIDE,
+                                                2.5,
+                                                2.5
+                                        ),
+                                        new ChangeLocationNodeBuilder(
+                                                new ChangeSeedNodeBuilder(
+                                                        Operation.ADD,
+                                                        3,
+                                                        new NoiseMapBuilder(4.0)
+                                                ),
+                                                Operation.DIVIDE,
+                                                Operation.DIVIDE,
+                                                2.0,
+                                                2.0
+                                        ),
+                                        new ChangeLocationNodeBuilder(
+                                                new ChangeSeedNodeBuilder(
+                                                        Operation.ADD,
+                                                        2,
                                                         new NoiseMapBuilder(1.0)
                                                 ),
                                                 Operation.DIVIDE,
                                                 Operation.DIVIDE,
-                                                10,
-                                                10
+                                                2.0,
+                                                2.0
+                                        ),
+                                        new NoiseMapBuilder(0.5),
+                                        new ChangeSeedNodeBuilder(
+                                                Operation.ADD,
+                                                1,
+                                                new NoiseMapBuilder(0.5)
+                                        ),
+                                        new ChangeLocationNodeBuilder(
+                                                new ChangeSeedNodeBuilder(
+                                                        Operation.ADD,
+                                                        5,
+                                                        new NoiseMapBuilder(0.3)
+                                                ),
+                                                Operation.MULTIPLY,
+                                                Operation.MULTIPLY,
+                                                10.0,
+                                                10.0
+                                        ),
+                                        new ChangeLocationNodeBuilder(
+                                                new ChangeSeedNodeBuilder(
+                                                        Operation.ADD,
+                                                        6,
+                                                        new NoiseMapBuilder(0.3)
+                                                ),
+                                                Operation.MULTIPLY,
+                                                Operation.MULTIPLY,
+                                                100.0,
+                                                100.0
+                                        ),
+                                        new ChangeLocationNodeBuilder(
+                                                new ChangeSeedNodeBuilder(
+                                                        Operation.ADD,
+                                                        7,
+                                                        new NoiseMapBuilder(0.2)
+                                                ),
+                                                Operation.MULTIPLY,
+                                                Operation.MULTIPLY,
+                                                1000.0,
+                                                1000.0
                                         ),
                                         new ImageMaskNodeBuilder(
                                                 getImage(),
-                                                1.0,
+                                                7.0,
                                                 new Color(0x704A40),
-                                                new Color(0x4D759D)
+                                                new Color(0x4D759D),
+                                                10
                                         )
                                 ),
                                 ValueOperation.POWER_SYMMETRICAL,
                                 2.0
                         ),
                         ValueOperation.REMOVE_POURCENT,
-                        0.4
+                        0.3
                 )
         ).build(60);
 
         // generate a 2d array of noise
-        double[][] noise = new double[1000][1000];
+        double[][] noise = new double[550][300];
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
                 noise[x][y] = complexNoise.getValue(x, y);
