@@ -78,11 +78,11 @@ public class ImageMaskNode implements Node {
         double dMax = Math.sqrt(Math.pow(color.getRed() - colorMax.getRed(), 2) + Math.pow(color.getGreen() - colorMax.getGreen(), 2) + Math.pow(color.getBlue() - colorMax.getBlue(), 2));
         // case 1 : color is near colorMin
         if (dMin * 1.1 < dMax) {
-            return 0;
+            return 0.15;
         }
         // case 2 : color is near colorMax
         if (dMax * 1.1 < dMin) {
-            return 1;
+            return 0.85;
         }
         // case 3 : color is in between
         return 0.5;

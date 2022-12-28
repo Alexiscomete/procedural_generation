@@ -39,12 +39,12 @@ public class MaskTest {
                                                 new ChangeSeedNodeBuilder(
                                                         Operation.ADD,
                                                         4,
-                                                        new NoiseMapBuilder(5.0)
+                                                        new NoiseMapBuilder(4.0)
                                                 ),
                                                 Operation.DIVIDE,
                                                 Operation.DIVIDE,
-                                                2.5,
-                                                2.5
+                                                1.5,
+                                                1.5
                                         ),
                                         new ChangeLocationNodeBuilder(
                                                 new ChangeSeedNodeBuilder(
@@ -54,8 +54,8 @@ public class MaskTest {
                                                 ),
                                                 Operation.DIVIDE,
                                                 Operation.DIVIDE,
-                                                2.0,
-                                                2.0
+                                                1.3,
+                                                1.3
                                         ),
                                         new ChangeLocationNodeBuilder(
                                                 new ChangeSeedNodeBuilder(
@@ -65,8 +65,8 @@ public class MaskTest {
                                                 ),
                                                 Operation.DIVIDE,
                                                 Operation.DIVIDE,
-                                                2.0,
-                                                2.0
+                                                1.3,
+                                                1.3
                                         ),
                                         new NoiseMapBuilder(0.5),
                                         new ChangeSeedNodeBuilder(
@@ -109,17 +109,17 @@ public class MaskTest {
                                         ),
                                         new ImageMaskNodeBuilder(
                                                 getImage(),
-                                                7.0,
+                                                11.0,
                                                 new Color(0x704A40),
                                                 new Color(0x4D759D),
-                                                10
+                                                6
                                         )
                                 ),
                                 ValueOperation.POWER_SYMMETRICAL,
                                 2.0
                         ),
                         ValueOperation.REMOVE_POURCENT,
-                        0.3
+                        0.35
                 )
         ).build(60);
 
