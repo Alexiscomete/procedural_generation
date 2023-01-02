@@ -63,10 +63,10 @@ public class ImageMaskNode implements Node {
             double y1w = y2 - y;
             double y2w = y - y1;
             // the weighted value of the pixels
-            double x1y1w = getValue(x1, y1) * x1w * y1w;
-            double x1y2w = getValue(x1, y2) * x1w * y2w;
-            double x2y1w = getValue(x2, y1) * x2w * y1w;
-            double x2y2w = getValue(x2, y2) * x2w * y2w;
+            double x1y1w = getSimpleValue(x1, y1) * x1w * y1w;
+            double x1y2w = getSimpleValue(x1, y2) * x1w * y2w;
+            double x2y1w = getSimpleValue(x2, y1) * x2w * y1w;
+            double x2y2w = getSimpleValue(x2, y2) * x2w * y2w;
             // the weighted sum of the pixels
             return (x1y1w + x1y2w + x2y1w + x2y2w) / (x1w * y1w + x1w * y2w + x2w * y1w + x2w * y2w);
         }
@@ -76,15 +76,15 @@ public class ImageMaskNode implements Node {
         double dMin = Math.sqrt(Math.pow(color.getRed() - colorMin.getRed(), 2) + Math.pow(color.getGreen() - colorMin.getGreen(), 2) + Math.pow(color.getBlue() - colorMin.getBlue(), 2));
         // distance to colorMax
         double dMax = Math.sqrt(Math.pow(color.getRed() - colorMax.getRed(), 2) + Math.pow(color.getGreen() - colorMax.getGreen(), 2) + Math.pow(color.getBlue() - colorMax.getBlue(), 2));
-        // case 1 : color is near colorMin
+        // case 3.1 : color is near colorMin
         if (dMin * 1.1 < dMax) {
             return 0.15;
         }
-        // case 2 : color is near colorMax
+        // case 3.2 : color is near colorMax
         if (dMax * 1.1 < dMin) {
             return 0.85;
         }
-        // case 3 : color is in between
+        // case 3.3 : color is in between
         return 0.5;
     }
 
