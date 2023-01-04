@@ -21,6 +21,8 @@ public class ImageMaskNode implements Node {
     }
 
     public double getNeighborsValue(int distance, double x, double y) {
+        x = Math.round(x);
+        y = Math.round(y);
         if (distance <= 0) {
             return 0;
         }
