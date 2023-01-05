@@ -64,7 +64,7 @@ public class MaskTest2 {
 
 
         // generate a 2d array of noise
-        double[][] noise = new double[1000][1000];
+        double[][] noise = new double[550][300];
         for (int x = 0; x < noise.length; x++) {
             for (int y = 0; y < noise[x].length; y++) {
                 noise[x][y] = complexNoise.getValue(50 + x * 0.1, 100 + y * 0.1);

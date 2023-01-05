@@ -123,8 +123,8 @@ public class ImageMaskNode implements Node {
         double value = getSimpleValue(x, y);
         double divideBy = 1;
         for (int i = 1; i <= neighbors; i++) {
-            value += getNeighborsValue(i, x, y) / i;
-            divideBy += (1.0 / i);
+            value += getNeighborsValue(i, x, y) / (i+2);
+            divideBy += (1.0 / (i+2));
         }
         return value / divideBy;
     }

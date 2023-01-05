@@ -19,7 +19,7 @@ repositories {
 
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
-version = "1-ALPHA.1"
+version = "1-ALPHA.2"
 description = "Procedural generation of a map"
 group = "io.github.alexiscomete.procedural-map-generation"
 
